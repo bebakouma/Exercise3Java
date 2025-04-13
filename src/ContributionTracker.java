@@ -1,3 +1,10 @@
+/*
+ * Explanation Video: https://www.loom.com/share/5564243d8bca4317a6888bc5cc6bd51a
+ * Execution Video: https://www.loom.com/share/b1505d55e8a247e5a6efc545951fda5c
+ */
+
+
+
 import java.io.*;
 import java.nio.file.*;
 import java.text.NumberFormat;
@@ -7,7 +14,7 @@ public class ContributionTracker {
 
     //  Constants 
     private static final double GOAL = 10_000_000.00;  // Fundraising goal
-    private static final String INPUT_FILE = "input.in"; 
+    private static final String INPUT_FILE = "input.in"; // must exist
     private static final String OUTPUT_FILE = "results.out";
 
     // Main Method 
@@ -22,18 +29,19 @@ public class ContributionTracker {
 
             // Loop through contributions until goal is reached
             for (double amount : donations) {
-                if (total >= GOAL) break;
+                
 
                 total += amount;
                 count++;
 
                 if (amount > max) max = amount;
                 if (amount < min) min = amount;
+                if (total >= GOAL) break;
             }
 
             if (total < GOAL) {
-                System.out.printf("⚠ Goal NOT reached (only %s collected).%n", money(total));
-            }
+                System.out.printf(" Goal NOT reached (only %s collected).%n", money(total));
+            } else System.out.println("Goal reached!");
 
             double average = (count == 0) ? 0 : total / count;
 
